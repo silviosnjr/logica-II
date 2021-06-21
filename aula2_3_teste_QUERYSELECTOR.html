@@ -1,0 +1,18 @@
+<meta charset="UTF-8">
+
+<h1>Diga que você está presente para a professora</h1>
+Nome: 
+<input/>
+<button>Adicionar Presença</button>
+
+<script>
+    var input = document.querySelector("input");
+    
+    function presenca() {
+        alert(input.value+" - ESTÁ PRESENTE!");
+    }
+
+    var button = document.querySelector("button");
+    button.onclick = presenca
+</script>
+

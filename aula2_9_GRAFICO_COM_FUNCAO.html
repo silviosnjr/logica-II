@@ -1,0 +1,25 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+
+    var tela = document.querySelector('canvas');
+    var pincel = tela.getContext('2d');
+    pincel.font='20px Georgia';
+
+    function colunaGrafico(posicao_y, cor, valor){
+        pincel.fillStyle = cor;
+        pincel.fillRect(0, posicao_y, valor, 50);            
+        pincel.fillText("R$ "+valor, valor, (posicao_y+25));
+    }
+
+    colunaGrafico(0, "green", 50);
+    colunaGrafico(50, "red", 300);
+    colunaGrafico(100, "violet", 150);
+    colunaGrafico(150, "orange", 125);
+    colunaGrafico(200, "blue", 350);
+    colunaGrafico(250, "grey", 400);
+    colunaGrafico(300, "black", 175);
+    colunaGrafico(350, "yellow", 250);
+
+</script>
+
