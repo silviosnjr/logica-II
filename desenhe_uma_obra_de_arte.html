@@ -6,14 +6,33 @@
 
     function desenhaQuadrado(x, y, tamanho, cor) {
         pincel.fillStyle = cor;
+        pincel.beginPath();
         pincel.fillRect(x, y, tamanho, tamanho)
         pincel.fill();
+        pincel.fillStyle = corAtual;
+    }
+
+    function desenhaX(){
+        pincel.strokeStyle = "black";
+        pincel.lineWidth = 3;
+        pincel.beginPath();
+        pincel.moveTo(560, 10);
+        pincel.lineTo(590, 40);
+
+        pincel.moveTo(590, 10);
+        pincel.lineTo(560, 40);
+
+        pincel.stroke();
     }
 
     function desenhaCirculo(x, y, raio, cor) {
         pincel.fillStyle = cor; // o padrão é blue
         pincel.beginPath();
-        pincel.arc(x, y, raio, 0, 2 * 3.14);
+        if(corAtual == "lightgray"){
+            pincel.arc(x, y, 20, 0, 2 * 3.14);
+        } else{
+            pincel.arc(x, y, raio, 0, 2 * 3.14);
+        }
         pincel.fill();
     }
 
@@ -21,6 +40,8 @@
         desenhaQuadrado(xVermelho, yQuadrados, tamanhoQuadrados, 'red');
         desenhaQuadrado(xVerde, yQuadrados, tamanhoQuadrados, 'green');
         desenhaQuadrado(xAzul, yQuadrados, tamanhoQuadrados, 'blue');
+        desenhaQuadrado(xBorracha, yQuadrados, tamanhoQuadrados, 'white');
+        desenhaX();
     }
 
     function lidaComMovimentoDoMouse(evento) {
@@ -40,10 +61,12 @@
 
     function desabilitaDesenhar() {
         desenha = false;
+        desenhaPaletaDeCores();
     }
 
     function podeDesenharNaArea(x, y) {
-         if(x >= 0 && x < 3*tamanhoQuadrados && y >= 0 && y < tamanhoQuadrados) {
+         if((x >= 0 && x < 3*tamanhoQuadrados && y >= 0 && y < tamanhoQuadrados) ||
+            (x >= 550 && x < 600 && y >= 0 && y < tamanhoQuadrados) ) {
             return false;
         } else {
             return true;
@@ -70,6 +93,11 @@ function selecionaCor(evento) {
             } else if (x > xAzul && x < xAzul + tamanhoQuadrados) {
 
                 corAtual = 'blue';
+
+            } else if (x > xBorracha && x < xBorracha + tamanhoQuadrados){
+
+                corAtual = 'lightgray';
+
             }
         }
     }
@@ -84,17 +112,15 @@ function selecionaCor(evento) {
     var xVermelho = 0;
     var xVerde  = 50;
     var xAzul = 100;
+    var xBorracha = 550;
     var yQuadrados = 0;
     var tamanhoQuadrados = 50;
 
     desenhaPaletaDeCores();
 
     tela.onmousemove = lidaComMovimentoDoMouse;
-
     tela.onmousedown = habilitaDesenhar;
-
     tela.onmouseup = desabilitaDesenhar;
-
     tela.onclick = selecionaCor;
 
 </script>
