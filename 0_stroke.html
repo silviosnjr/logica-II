@@ -1,0 +1,21 @@
+<meta charset="UTF-8">
+
+<canvas width="600" height="400"></canvas>
+
+<script>
+        var tela = document.querySelector("canvas");
+        var pincel = tela.getContext("2d");
+
+        pincel.strokeStyle = 'red';
+        pincel.lineWidth = 10;
+
+        pincel.beginPath();
+        pincel.moveTo(0, 0);
+        pincel.lineTo(600, 400);
+
+        pincel.moveTo(600, 0);
+        pincel.lineTo(0, 400);
+
+        pincel.stroke(); 
+</script>
+
